@@ -9,8 +9,11 @@ public class Inimigo {
 	private double inicioExplosao;						// instante do início da explosão
 	private double fimExplosao;						    // instante do final da explosão
 	private long proximoTiro;
+	private double xProximo;							// coordenada x do próximo inimigo tipo 2 a aparecer
 	private double raio;
-	long proximoInimigo;
+	private long proximoInimigo;
+	private int contagem;
+	
 	public Estado getEstado() {
 		return estado;
 	}
@@ -76,6 +79,18 @@ public class Inimigo {
 	}
 	public void setProximoInimigo(long proximoInimigo) {
 		this.proximoInimigo = proximoInimigo;
+	}
+	public double getXProximo() {
+		return xProximo;
+	}
+	public void setXProximo(double xProximo) {
+		this.xProximo = xProximo;
+	}
+	public int getContagem() {
+		return contagem;
+	}
+	public void setContagem(int contagem) {
+		this.contagem = contagem;
 	}
 	
 }
