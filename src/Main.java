@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.util.ArrayList;
 
 public class Main {
 	
@@ -79,12 +80,7 @@ public class Main {
 		jogador.setProximoTiro(currentTime);					// instante a partir do qual pode haver um próximo tiro
 
 		/* variáveis dos projéteis disparados pelo player */
-		
-		int [] projectile_states = new int[10];					// estados
-		double [] projectile_X = new double[10];				// coordenadas x
-		double [] projectile_Y = new double[10];				// coordenadas y
-		double [] projectile_VX = new double[10];				// velocidades no eixo x
-		double [] projectile_VY = new double[10];				// velocidades no eixo y
+		ArrayList<Projetil> projetilJogador = new ArrayList<Projetil>();
 
 		/* variáveis dos inimigos tipo 1 */
 		
