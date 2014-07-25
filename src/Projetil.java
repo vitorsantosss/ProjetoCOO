@@ -5,6 +5,8 @@ public class Projetil {
 	private double y;									// coordenada y
 	private double velocidadeX;							// velocidade no eixo x
 	private double velocidadeY;							// velocidade no eixo y
+	private double raio;
+	
 	public double getX() {
 		return x;
 	}
@@ -34,5 +36,11 @@ public class Projetil {
 	}
 	public void setEstado(Estado estado) {
 		this.estado = estado;
+	}
+	public double getRaio() {
+		return raio;
+	}
+	public void setRaio(double raio) {
+		this.raio = raio;
 	}
 }
