@@ -1,4 +1,4 @@
 
-public class EstadoAtivo implements Estado{
+public class EstadoAtivo extends Estado{
 
 }

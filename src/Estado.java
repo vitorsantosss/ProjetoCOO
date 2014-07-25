@@ -1,4 +1,4 @@
 
-public interface Estado {
-	
+abstract class Estado {
+
 }

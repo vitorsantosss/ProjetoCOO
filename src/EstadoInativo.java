@@ -1,4 +1,4 @@
 
-public class EstadoInativo implements Estado{
+public class EstadoInativo extends Estado{
 
 }
