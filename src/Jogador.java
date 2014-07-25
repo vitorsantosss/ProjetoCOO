@@ -2,7 +2,7 @@
 public class Jogador {
 	
 	private Estado estado;
-	private Jogador jogador = null;
+	private static Jogador jogador = null;
 	private double x = GameLib.WIDTH / 2;					// coordenada x
 	private double y = GameLib.HEIGHT * 0.90;				// coordenada y
 	private double velocidadeX = 0.25;						// velocidade no eixo x
@@ -16,7 +16,7 @@ public class Jogador {
 		
 	}
 	
-	public synchronized Jogador getJogador(){
+	public static synchronized Jogador getJogador(){
 		if(jogador == null){
 			jogador = new Jogador();
 		}
