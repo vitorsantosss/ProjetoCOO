@@ -205,13 +205,13 @@ public class Main {
 					}
 				}
 				
-				for(int i = 0; i < inimigoTipo2.size().length; i++){
+				for(int i = 0; i < inimigoTipo2.size(); i++){
 					
-					double dx = enemy2_X[i] - jogador.getX();
-					double dy = enemy2_Y[i] - jogador.getY();
+					double dx = inimigoTipo2.get(i).getX() - jogador.getX();
+					double dy = inimigoTipo2.get(i).getX() - jogador.getY();
 					double dist = Math.sqrt(dx * dx + dy * dy);
 					
-					if(dist < (jogador.getRaio() + enemy2_radius) * 0.8){
+					if(dist < (jogador.getRaio() + inimigoTipo2.get(i).getRaio()) * 0.8){
 						
 						jogador.setEstado(new EstadoExplodido());
 						jogador.setInicioExplosao(currentTime);
@@ -222,34 +222,34 @@ public class Main {
 			
 			/* colisões projeteis (player) - inimigos */
 			
-			for(int k = 0; k < projectile_states.length; k++){
+			for(int k = 0; k < projetilInimigo.size(); k++){
 				
-				for(int i = 0; i < enemy1_states.length; i++){
-										
-					if(enemy1_states[i] == ACTIVE){
+				for(int i = 0; i < inimigoTipo1.size(); i++){
+					
+					if(inimigoTipo1.get(i).getEstado() == ACTIVE){ //corrigir implementacao, getEstado tem que retonar um inteiro 
 					
 						double dx = inimigoTipo1.get(i).getX() - projectile_X[k];
 						double dy = inimigoTipo1.get(i).getY() - projectile_Y[k];
 						double dist = Math.sqrt(dx * dx + dy * dy);
 						
-						if(dist < enemy1_radius){
+						if(dist < inimigoTipo1.get(i).getRaio()){
 							
-							enemy1_states[i] = EXPLODING;
+							inimigoTipo1.get(i).setEstado(new EstadoExplodido()) = EXPLODING;
 							enemy1_explosion_start[i] = currentTime;
 							enemy1_explosion_end[i] = currentTime + 500;
 						}
 					}
 				}
 				
-				for(int i = 0; i < enemy2_states.length; i++){
+				for(int i = 0; i < inimigoTipo2.size(); i++){
 					
-					if(enemy2_states[i] == ACTIVE){
+					if(inimigoTipo2.get(i).getEstado() == ACTIVE){
 						
-						double dx = enemy2_X[i] - projectile_X[k];
-						double dy = enemy2_Y[i] - projectile_Y[k];
+						double dx = inimigoTipo2.get(i).getX() - projetilInimigo.get(i).getX();
+						double dy = inimigoTipo2.get(i).getY() - projetilInimigo.get(i).getY();
 						double dist = Math.sqrt(dx * dx + dy * dy);
 						
-						if(dist < enemy2_radius){
+						if(dist < inimigoTipo2.get(i).getRaio()){
 							
 							enemy2_states[i] = EXPLODING;
 							enemy2_explosion_start[i] = currentTime;
