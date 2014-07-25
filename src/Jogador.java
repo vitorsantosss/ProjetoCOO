@@ -3,13 +3,13 @@ public class Jogador {
 	
 	private Estado estado;
 	private static Jogador jogador = null;
-	private double x = GameLib.WIDTH / 2;					// coordenada x
-	private double y = GameLib.HEIGHT * 0.90;				// coordenada y
-	private double velocidadeX = 0.25;						// velocidade no eixo x
-	private double velocidadeY = 0.25;						// velocidade no eixo y
-	private double raio = 12.0;							    // raio (tamanho aproximado do player)
-	private double inicioExplosao = 0;						// instante do início da explosão
-	private double fimExplosao = 0;						    // instante do final da explosão
+	private double x;									// coordenada x
+	private double y;									// coordenada y
+	private double velocidadeX;							// velocidade no eixo x
+	private double velocidadeY;							// velocidade no eixo y
+	private double raio;							    // raio (tamanho aproximado do player)
+	private double inicioExplosao;						// instante do início da explosão
+	private double fimExplosao;						    // instante do final da explosão
 	private long proximoTiro;
 	
 	private Jogador(){
