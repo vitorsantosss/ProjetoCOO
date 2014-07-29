@@ -226,24 +226,24 @@ public class Main {
 				
 				for(int i = 0; i < inimigoTipo1.size(); i++){
 					
-					if(inimigoTipo1.get(i).getEstado() == ACTIVE){ //corrigir implementacao, getEstado tem que retonar um inteiro 
+					if(inimigoTipo1.get(i).getEstado().equals(ACTIVE)){ //corrigir implementacao, getEstado tem que retonar um inteiro 
 					
-						double dx = inimigoTipo1.get(i).getX() - projectile_X[k];
-						double dy = inimigoTipo1.get(i).getY() - projectile_Y[k];
+						double dx = inimigoTipo1.get(i).getX() - projetilInimigo.get(i).getX();
+						double dy = inimigoTipo1.get(i).getY() - projetilInimigo.get(i).getY();
 						double dist = Math.sqrt(dx * dx + dy * dy);
 						
 						if(dist < inimigoTipo1.get(i).getRaio()){
 							
-							inimigoTipo1.get(i).setEstado(new EstadoExplodido()) = EXPLODING;
-							enemy1_explosion_start[i] = currentTime;
-							enemy1_explosion_end[i] = currentTime + 500;
+							inimigoTipo1.get(i).setEstado(new EstadoExplodido());
+							inimigoTipo1.get(i).setInicioExplosao(currentTime);
+							inimigoTipo1.get(i).setFimExplosao(currentTime + 500);
 						}
 					}
 				}
 				
 				for(int i = 0; i < inimigoTipo2.size(); i++){
 					
-					if(inimigoTipo2.get(i).getEstado() == ACTIVE){
+					if(inimigoTipo2.get(i).getEstado().equals(ACTIVE)){
 						
 						double dx = inimigoTipo2.get(i).getX() - projetilInimigo.get(i).getX();
 						double dy = inimigoTipo2.get(i).getY() - projetilInimigo.get(i).getY();
@@ -251,9 +251,9 @@ public class Main {
 						
 						if(dist < inimigoTipo2.get(i).getRaio()){
 							
-							enemy2_states[i] = EXPLODING;
-							enemy2_explosion_start[i] = currentTime;
-							enemy2_explosion_end[i] = currentTime + 500;
+							inimigoTipo2.get(i).setEstado(new EstadoExplodido());
+							inimigoTipo2.get(i).setInicioExplosao(currentTime);
+							inimigoTipo2.get(i).setFimExplosao(currentTime + 500);
 						}
 					}
 				}
@@ -265,70 +265,70 @@ public class Main {
 			
 			/* projeteis (player) */
 			
-			for(int i = 0; i < projectile_states.length; i++){
+			for(int i = 0; i < projetilJogador.size(); i++){
 				
-				if(projectile_states[i] == ACTIVE){
+				if(projetilJogador.get(i).getEstado().equals(ACTIVE)){
 					
 					/* verificando se projétil saiu da tela */
-					if(projectile_Y[i] < 0) {
+					if(projetilJogador.get(i).getY() < 0) {
 						
-						projectile_states[i] = INACTIVE;
+						projetilJogador.get(i).setEstado(new EstadoInativo());
 					}
 					else {
 					
-						projectile_X[i] += projectile_VX[i] * delta;
-						projectile_Y[i] += projectile_VY[i] * delta;
+						projetilJogador.get(i).setX(projetilJogador.get(i).getX() * delta);
+						projetilJogador.get(i).setY(projetilJogador.get(i).getY() * delta);
 					}
 				}
 			}
 			
 			/* projeteis (inimigos) */
 			
-			for(int i = 0; i < e_projectile_states.length; i++){
+			for(int i = 0; i < projetilInimigo.size(); i++){
 				
-				if(e_projectile_states[i] == ACTIVE){
+				if(projetilInimigo.get(i).getEstado().equals(ACTIVE)){
 					
 					/* verificando se projétil saiu da tela */
 					if(projetilInimigo.get(i).getY() > GameLib.HEIGHT) {
 						
-						e_projectile_states[i] = INACTIVE;
+						projetilInimigo.get(i).setEstado(new EstadoInativo());
 					}
 					else {
 					
-						projetilInimigo.get(i).getX() += e_projectile_VX[i] * delta;
-						projetilInimigo.get(i).getY() += e_projectile_VY[i] * delta;
+						projetilInimigo.get(i).setX(projetilInimigo.get(i).getVelocidadeX() * delta);
+						projetilInimigo.get(i).setY(projetilInimigo.get(i).getVelocidadeY() * delta);
 					}
 				}
 			}
 			
 			/* inimigos tipo 1 */
 			
-			for(int i = 0; i < enemy1_states.length; i++){
+			for(int i = 0; i < inimigoTipo1.size(); i++){
 				
-				if(enemy1_states[i] == EXPLODING){
+				if(inimigoTipo1.get(i).getEstado().equals(EXPLODING)){
 					
-					if(currentTime > enemy1_explosion_end[i]){
+					if(currentTime > inimigoTipo1.get(i).getFimExplosao()){
 						
-						enemy1_states[i] = INACTIVE;
+						inimigoTipo1.get(i).setEstado(new EstadoInativo());
 					}
 				}
 				
-				if(enemy1_states[i] == ACTIVE){
+				if(inimigoTipo1.get(i).getEstado().equals(ACTIVE)){
 					
 					/* verificando se inimigo saiu da tela */
 					if(inimigoTipo1.get(i).getY() > GameLib.HEIGHT + 10) {
 						
-						enemy1_states[i] = INACTIVE;
+						inimigoTipo1.get(i).setEstado(new EstadoInativo());
 					}
 					else {
 					
-						inimigoTipo1.get(i).getX() += enemy1_V[i] * Math.cos(enemy1_angle[i]) * delta;
-						inimigoTipo1.get(i).getY() += enemy1_V[i] * Math.sin(enemy1_angle[i]) * delta * (-1.0);
-						enemy1_angle[i] += enemy1_RV[i] * delta;
+						inimigoTipo1.get(i).setX(inimigoTipo1.get(i).getVelocidade() * Math.cos(inimigoTipo1.get(i).getAngulo()) * delta);
+						inimigoTipo1.get(i).setY(inimigoTipo1.get(i).getVelocidade() * Math.cos(inimigoTipo1.get(i).getAngulo()) * delta * (-1.0));
+						inimigoTipo1.get(i).setAngulo(inimigoTipo1.get(i).getVelocidadeRotacao() * delta);
 						
-						if(currentTime > enemy1_nextShoot[i] && inimigoTipo1.get(i).getY() < jogador.getY()){
+						if(currentTime > inimigoTipo1.get(i).getProximoTiro() && inimigoTipo1.get(i).getY() < jogador.getY()){
 																							
-							int free = findFreeIndex(e_projectile_states);
+							int free = findFreeIndex(projetile_projectile_states);
 							
 							if(free < e_projectile_states.length){
 								
@@ -338,7 +338,7 @@ public class Main {
 								e_projectile_VY[free] = Math.sin(enemy1_angle[i]) * 0.45 * (-1.0);
 								e_projectile_states[free] = 1;
 								
-								enemy1_nextShoot[i] = (long) (currentTime + 200 + Math.random() * 500);
+								inimigoTipo1.get(i).setProximoTiro((long) (currentTime + 200 + Math.random() * 500));
 							}
 						}
 					}
