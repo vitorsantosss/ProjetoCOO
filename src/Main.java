@@ -228,7 +228,7 @@ public class Main {
 				
 				for(int i = 0; i < inimigoTipo1.size(); i++){
 					
-					if(inimigoTipo1.get(i).getEstado().equals(ACTIVE)){ //corrigir implementacao, getEstado tem que retonar um inteiro 
+					if(inimigoTipo1.get(i).getEstado().equals(ACTIVE)){ 
 					
 						double dx = inimigoTipo1.get(i).getX() - projetilInimigo.get(i).getX();
 						double dy = inimigoTipo1.get(i).getY() - projetilInimigo.get(i).getY();
